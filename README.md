@@ -161,9 +161,7 @@ The application will be available at:
 
 DocuSphere exposes interactive API documentation through **Swagger UI**.
 
-After starting the application, open:
-
-👉 [Swagger UI](http://localhost:8080/swagger-ui/index.html)
+👉 [Swagger UI](https://docusphere-xtwy.onrender.com/swagger-ui/index.html)
 
 Swagger provides an interactive interface for:
 
