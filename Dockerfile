@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jre
 WORKDIR /app
 
 # Copy the jar file (update with your actual jar name if needed)
-COPY target/docusphere-0.0.1-SNAPSHOT.jar app.jar
+COPY target/*.jar app.jar
 
 # Expose port 8080
 EXPOSE 8080
