@@ -113,6 +113,7 @@ mvn -version
 `git clone https://github.com/Aman-sharma02/docusphere.git`
 
 `cd docusphere`
+
 2. Configure PostgreSQL
 
 Database Setup
