@@ -1,14 +1,34 @@
-# Use a lightweight JDK base image
-FROM eclipse-temurin:17-jre
+# ============================
+# Stage 1: Build the application
+# ============================
+FROM eclipse-temurin:17-jdk AS build
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the jar file (update with your actual jar name if needed)
-COPY target/*.jar app.jar
+# Copy Maven wrapper and Maven configuration
+COPY .mvn/ .mvn/
+COPY mvnw pom.xml ./
 
-# Expose port 8080
+# Download dependencies
+RUN ./mvnw dependency:go-offline
+
+# Copy application source code
+COPY src ./src
+
+# Build the Spring Boot application
+RUN ./mvnw clean package -DskipTests
+
+
+# ============================
+# Stage 2: Run the application
+# ============================
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+# Copy only the generated JAR from build stage
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
 
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
